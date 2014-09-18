@@ -1,0 +1,169 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "title";
+}
+
+<div class="app-page" ng-controller="milkyway.home.EditController">
+    
+    <div class="app-event app-event-edit">
+        
+        <div class="app-toolbar">
+            
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active"><a href="#app-toolbar-item-timeline" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-star"></span><span class="glyphicon-text">Timeline</span></a></li>
+                <li><a href="#app-toolbar-item-map" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-globe"></span><span class="glyphicon-text">Map</span></a></li>
+                <li><a href="#app-toolbar-item-about" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-info-sign"></span><span class="glyphicon-text">About</span></a></li>
+            </ul>
+            
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane active" id="app-toolbar-item-timeline">
+                    <ul ui-sortable ng-model="timeline">
+                        <li ng-repeat="entry in timeline">
+                        
+                            <p>{{entry.location.address}}</p>
+                            <span>{{entry.happenedAt}}</span>
+                            <br/>
+                            <p>{{entry.status}}</p>
+                            
+                            <button ng-click="doDeletePin(entry)">delete</button>
+
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-pane" id="app-toolbar-item-map">Map content</div>
+                <div class="tab-pane" id="app-toolbar-item-about">About content</div>
+            </div>
+
+        </div>
+        
+        <div class="app-map-container">
+            <div id="app-map"></div>
+            
+            <div class="app-map-toolbox">
+                <tabset justified="true">
+                    <tab select="doChangeToolbox(0)" active="toolbox[0].active">
+                        <tab-heading>
+                            <span class="glyphicon glyphicon-pencil"></span> Marker
+                        </tab-heading>
+                        <div ng-switch on="selected.length">
+                            <div ng-switch-when="0">
+                                Click on the map to put marker
+                            </div>
+                            <div ng-switch-when="1">
+                                <tabset class="tabs-below">
+                                    <tab>
+                                        <tab-heading>
+                                            Info
+                                        </tab-heading>
+                                        Marker info
+                                    </tab>
+                                    <tab>
+                                        <tab-heading>
+                                            Style
+                                        </tab-heading>
+                                        
+                                            <div ng-repeat="color in colors">
+                                                <button class="btn btn-default" ng-style="{'background-color': '{{color}}'}" ng-click="doChangeColorForPin(selected[0], color)"></button>
+                                            </div>
+                                    </tab>
+                                    <tab>
+                                        <tab-heading>
+                                            Symbol
+                                        </tab-heading>
+                                        
+                                            <div ng-repeat="symbol in symbols">
+                                                <button class="btn btn-default" ng-click="doChangeSymbolForPin(selected[0], symbol)">
+                                                    <i class="fa fa-{{symbol.name}}"></i>
+                                                </button>
+                                            </div>
+                                    </tab>
+                                    <tab>
+                                        <tab-heading>
+                                            <button class="btn" ng-click="doDeletePin(selected[0])">
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                            </button>
+                                        </tab-heading>
+                                    </tab>
+                                </tabset>
+                            </div>
+                            <div ng-switch-default>
+                                Few items selected ({{selected.length}})  
+                                <button class="btn btn-primary" ng-click="doJoinPins()">Connect</button>
+                                <button class="btn btn-primary" ng-click="doDeletePins(selected)">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab select="doChangeToolbox(1)" active="toolbox[1].active">
+                        <tab-heading>
+                            <span class="glyphicon glyphicon-pencil"></span> Line
+                        </tab-heading>
+                        <div ng-switch on="selected.length">
+                            <div ng-switch-when="0">
+                            Select some lines to modifie it. Select markers to connect them
+                                
+                            </div>
+                            <div ng-switch-when="1">
+                                 <tabset class="tabs-below">
+                                    <tab>
+                                        <tab-heading>
+                                            Info
+                                        </tab-heading>
+                                        Marker info
+                                    </tab>
+                                    <tab>
+                                        <tab-heading>
+                                            Style
+                                        </tab-heading>
+                                        
+                                            <div ng-repeat="color in colors">
+                                                <button class="btn btn-default" ng-style="{'background-color': '{{color}}'}" ng-click="doChangeColorForRoute(selected[0], color)"></button>
+                                            </div>
+                                    </tab>
+                                    <tab>
+                                        <tab-heading>
+                                            Types
+                                        </tab-heading>
+                                        Change route types (by plane, trekking, car, boat)
+                                    </tab>
+                                    <tab>
+                                        <tab-heading>
+                                            <button class="btn" ng-click="doDeleteRoute(selected[0])">
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                            </button>
+                                        </tab-heading>
+                                    </tab>
+                                </tabset>
+                            </div>
+                            <div ng-switch-default>
+                                Few items selected ({{selected.length}})  
+                                <button class="btn btn-primary" ng-click="doDeleteRoutes(selected)">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab select="doChangeToolbox(2)" active="toolbox[2].active">
+                        <tab-heading>
+                            <span class="glyphicon glyphicon-search"></span>
+                        </tab-heading>
+                        <div class="input-group">
+                            <input type="text" class="form-control">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </tab>
+                </tabset>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

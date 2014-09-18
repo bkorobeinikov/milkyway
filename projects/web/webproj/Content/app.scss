@@ -1,0 +1,96 @@
+.app-event {
+
+	color: #7f7f7f;
+	font-size: 12px;
+
+    &.app-event-edit {
+
+	position: absolute;
+	top: 0;
+	bottom:0;
+	left: 0;
+	right: 0;
+
+	background: white;
+
+	display: flex;
+
+		.app-toolbar {
+			height: 100%;
+			width: 36em;
+			background: white;
+
+			display: flex;
+
+			.nav {
+				background-color: #303030;
+				width: 6em;
+				
+				li {
+					margin: 0.5em;
+					width: 5em;
+					height: 5em;
+
+					display:flex;
+
+					a {
+						padding:0;
+						text-align:center;
+
+						display:flex;
+						flex-grow:1;
+						flex-direction: column;
+						justify-content:center;
+						align-content:center;
+					}
+				}
+
+				.glyphicon {
+					font-size:2em;
+				}
+
+				.glyphicon-text {
+					margin-top: 0.5em;
+				}
+			}
+
+			.tab-content {
+				background-color: #F8F8F8;
+				flex-grow:1;
+
+				display:flex;
+
+				.tab-pane {
+				flex-grow:1;
+				}
+			}
+		}
+
+		.app-map-container {
+			position: relative;
+			flex-grow:1;
+			display: flex;
+
+			#app-map {
+				flex-grow:1;				
+			}
+
+			.app-map-toolbox {
+				position: absolute;
+				width: 30em;
+				top: 1em;
+				left: 5em;
+				background:white;
+			}
+		}
+	}
+
+	#app-toolbar-item-timeline {
+	display: flex;
+	flex-direction: column;
+		ul {
+		overflow:scroll;
+		flex-grow:1;
+		}
+	}
+}

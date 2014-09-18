@@ -1,0 +1,31 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "title";
+}
+
+<script src="http://jvectormap.com/js/jquery-jvectormap-world-mill-en.js"></script>
+
+<script>
+    $(function() {
+        $('#m-world-map').vectorMap({ map: 'world_mill_en' });
+    });
+</script>
+
+<div class="app-page" ng-controller="milkyway.home.LoginController">
+    
+    <div>
+        <div class="app-map-container">
+            <div id="app-map"></div>
+            <div id="app-map-overlay"></div>
+          
+            <div class="app-cover-container app-centered">
+                <h1>Travel app</h1>
+                <div>
+                    <button class="btn btn-default">Login to facebook</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

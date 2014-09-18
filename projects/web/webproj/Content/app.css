@@ -1,0 +1,61 @@
+.app-event {
+  color: #7f7f7f;
+  font-size: 12px; }
+  .app-event.app-event-edit {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    display: flex; }
+    .app-event.app-event-edit .app-toolbar {
+      height: 100%;
+      width: 36em;
+      background: white;
+      display: flex; }
+      .app-event.app-event-edit .app-toolbar .nav {
+        background-color: #303030;
+        width: 6em; }
+        .app-event.app-event-edit .app-toolbar .nav li {
+          margin: 0.5em;
+          width: 5em;
+          height: 5em;
+          display: flex; }
+          .app-event.app-event-edit .app-toolbar .nav li a {
+            padding: 0;
+            text-align: center;
+            display: flex;
+            flex-grow: 1;
+            flex-direction: column;
+            justify-content: center;
+            align-content: center; }
+        .app-event.app-event-edit .app-toolbar .nav .glyphicon {
+          font-size: 2em; }
+        .app-event.app-event-edit .app-toolbar .nav .glyphicon-text {
+          margin-top: 0.5em; }
+      .app-event.app-event-edit .app-toolbar .tab-content {
+        background-color: #F8F8F8;
+        flex-grow: 1;
+        display: flex; }
+        .app-event.app-event-edit .app-toolbar .tab-content .tab-pane {
+          flex-grow: 1; }
+    .app-event.app-event-edit .app-map-container {
+      position: relative;
+      flex-grow: 1;
+      display: flex; }
+      .app-event.app-event-edit .app-map-container #app-map {
+        flex-grow: 1; }
+      .app-event.app-event-edit .app-map-container .app-map-toolbox {
+        position: absolute;
+        width: 30em;
+        top: 1em;
+        left: 5em;
+        background: white; }
+  .app-event #app-toolbar-item-timeline {
+    display: flex;
+    flex-direction: column; }
+    .app-event #app-toolbar-item-timeline ul {
+      overflow: scroll;
+      flex-grow: 1; }
+
